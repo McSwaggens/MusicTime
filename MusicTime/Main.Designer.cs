@@ -31,8 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.MusicTime_Title = new System.Windows.Forms.Label();
             this.LoadingAnimation = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SearchBox = new MusicTime.Components.TextEntry();
             this.controlBar = new MusicTime.Components.ControlBar();
+            this.SearchCollection = new MusicTime.Components.SongListPanel();
             ((System.ComponentModel.ISupportInitialize)(this.LoadingAnimation)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,6 +61,16 @@
             this.LoadingAnimation.TabStop = false;
             this.LoadingAnimation.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.Color.Gray;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(307, 643);
+            this.panel1.TabIndex = 5;
+            // 
             // SearchBox
             // 
             this.SearchBox.BackColor = System.Drawing.Color.Transparent;
@@ -84,25 +96,37 @@
             this.controlBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(11)))), ((int)(((byte)(23)))));
             this.controlBar.Location = new System.Drawing.Point(-2, 643);
             this.controlBar.Name = "controlBar";
-            this.controlBar.Size = new System.Drawing.Size(1161, 54);
+            this.controlBar.Size = new System.Drawing.Size(1188, 54);
             this.controlBar.TabIndex = 0;
             this.controlBar.Text = "controlBar1";
+            // 
+            // SearchCollection
+            // 
+            this.SearchCollection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.SearchCollection.AutoScroll = true;
+            this.SearchCollection.Location = new System.Drawing.Point(326, 58);
+            this.SearchCollection.Name = "SearchCollection";
+            this.SearchCollection.Size = new System.Drawing.Size(698, 579);
+            this.SearchCollection.TabIndex = 4;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1154, 693);
+            this.ClientSize = new System.Drawing.Size(1184, 701);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.LoadingAnimation);
             this.Controls.Add(this.MusicTime_Title);
             this.Controls.Add(this.controlBar);
+            this.Controls.Add(this.SearchCollection);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 700);
+            this.MinimumSize = new System.Drawing.Size(740, 700);
             this.Name = "Main";
             this.Text = "Music Time";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.LoadingAnimation)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -115,6 +139,8 @@
         private System.Windows.Forms.Label MusicTime_Title;
         private System.Windows.Forms.PictureBox LoadingAnimation;
         private Components.TextEntry SearchBox;
+        private Components.SongListPanel SearchCollection;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

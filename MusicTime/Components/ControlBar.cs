@@ -9,11 +9,18 @@ namespace MusicTime.Components
     {
         TimeController timeController = new TimeController();
         Controller Play_Pause;
+        Controller FastForward;
+        Controller Rewind;
 
         private Image Play_Norm = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("play");
         private Image Play_Hovered = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("play_hovered");
         private Image Pause_Norm = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("pause");
         private Image Pause_Hovered = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("pause_hovered");
+
+        private Image fastforward_Norm = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("fastforward");
+        private Image fastforward_hovered = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("fastforward_hovered");
+        private Image rewind_Norm = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("rewind");
+        private Image rewind_hovered = ( Bitmap )MusicTime.Properties.Resources.ResourceManager.GetObject("rewind_hovered");
 
         public ControlBar()
         {
@@ -23,7 +30,16 @@ namespace MusicTime.Components
             Play_Pause.Size = new Size(37, 37);
             Play_Pause.Click += Play_Pause_Click;
             Play_Pause.DoubleClick += Play_Pause_Click;
-            
+
+            //Skit Forward Button
+            FastForward = new Controller(fastforward_Norm, fastforward_hovered);
+            Controls.Add(FastForward);
+            FastForward.Size = new Size(24, 24);
+
+            //Skip Backwards
+            Rewind = new Controller(rewind_Norm, rewind_hovered);
+            Controls.Add(Rewind);
+            Rewind.Size = new Size(24, 24);
             
 
             //Time Controller
@@ -65,7 +81,12 @@ namespace MusicTime.Components
         protected override void OnSizeChanged(EventArgs e)
         {
             timeController.Width = Width;
+
             Play_Pause.Location = new Point((Width / 2) - (Play_Pause.Width / 2), ( Height / 2 ) - ( Play_Pause.Height / 2 ) + 1);
+
+            FastForward.Location = new Point(Play_Pause.Location.X + ( Play_Pause.Width ) + 30, ( Height / 2 ) - ( FastForward.Height / 2 ) + 1);
+
+            Rewind.Location = new Point(Play_Pause.Location.X - ( Rewind.Width ) - 30, ( Height / 2 ) - ( FastForward.Height / 2 ) + 1);
         }
     }
 

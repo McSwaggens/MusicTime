@@ -61,6 +61,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <None Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\SourceSansPro-Regular.ttf" />
     <None Include="Resources\time_back.png" />
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +163,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MusicTime_Icon.ico" />
+    <None Include="Resources\rewind_hovered.png" />
+    <None Include="Resources\rewind.png" />
+    <None Include="Resources\eplay.png" />
+    <None Include="Resources\heart_enabled.png" />
+    <None Include="Resources\heart_disabled.png" />
+    <None Include="Resources\fastforward_hovered.png" />
+    <None Include="Resources\fastforward.png" />
+    <None Include="Resources\eplay_hovered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,13 +21,14 @@ namespace MusicTime
         [DllImport("gdi32.dll")]
         private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont, IntPtr pdv, [In] ref uint pcFonts);
 
-        private PrivateFontCollection fontCollection = new PrivateFontCollection();
+        public static PrivateFontCollection fontCollection = new PrivateFontCollection();
 
         public Main()
         {
             InitializeComponent();
 
             LoadFont(MusicTime.Properties.Resources.OleoScript_Regular);
+            LoadFont(MusicTime.Properties.Resources.SourceSansPro_Regular);
 
             MusicTime_Title.Font = new Font(fontCollection.Families[0], 30, FontStyle.Regular, GraphicsUnit.Pixel);
             MusicTime_Title.ForeColor = Color.FromArgb(20, 79, 138);
@@ -43,23 +44,49 @@ namespace MusicTime
         }
 
         private SearchThread CurrentSearchThread;
-
+        private Thread TextAniThread;
+        private bool TextChanged = false;
+        private bool allive = false;
         private void SearchBox_Typed(object sender, EventArgs e)
         {
-            LoadingAnimation.Visible = true;
-            MusicTime_Title.Visible = true;
             if (CurrentSearchThread != null)
             {
                 CurrentSearchThread.isPrimary = false;
             }
             if (!String.IsNullOrWhiteSpace(SearchBox.Text))
             {
-                CurrentSearchThread = new Main.SearchThread(this);
-                CurrentSearchThread.Start();
+                SearchCollection.Visible = false;
+                if (TextAniThread == null)
+                {
+                    TextAniThread = new Thread(() =>
+                    {
+                        allive = true;
+                        while (true)
+                        {
+                            TextChanged = false;
+                            Thread.Sleep(350);
+
+                            if (!TextChanged)
+                            {
+                                CurrentSearchThread = new Main.SearchThread(this);
+                                CurrentSearchThread.Start();
+                                break;
+                            }
+                        }
+                        allive = false;
+                        TextAniThread = null;
+                    });
+                }
+                if (!allive)
+                    TextAniThread.Start();
+                TextChanged = true;
+                LoadingAnimation.Visible = true;
+                MusicTime_Title.Visible = true;
             }
             else
             {
-                Console.WriteLine("E_WHITE");
+                LoadingAnimation.Visible = false;
+                MusicTime_Title.Visible = false;
             }
         }
 
@@ -82,23 +109,39 @@ namespace MusicTime
                     {
                         IEnumerable<Song> Result;
                         Result = MusicTimeCore.SourceFetch.Search(forminst.SearchBox.Text);
-                        string g= forminst.SearchBox.Text;
+                        string g = forminst.SearchBox.Text;
+                        List<KnownSongInfo> build = new List<KnownSongInfo>();
+                        int Filtered = 0;
                         foreach (Song song in Result)
                         {
-                            var s = new KnownSongInfo() {Artist = song.Artist, Name = song.Name};
+                            song.Name = System.Web.HttpUtility.HtmlDecode(song.Name);
+                            if (!song.Name.Contains("Ð"))
+                            {
+                                build.Add(new KnownSongInfo() { Artist = song.Artist, Name = song.Name });
+                            }
+                            else Filtered++;
                         }
+                        Console.WriteLine("Filtered " + Filtered + " results");
                         if (isPrimary)
                         {
                             forminst.Invoke(new MethodInvoker(delegate
                             {
                                 forminst.LoadingAnimation.Visible = false;
                                 forminst.MusicTime_Title.Visible = false;
+                                forminst.SearchCollection.Set(build);
                             }));
                         }
                         Console.WriteLine("Returned for: " + g);
                     } catch (Exception ee)
                     {
                         Console.WriteLine("Error fetching content: " + ee.Message);
+                    }
+                    finally
+                    {
+                        forminst.Invoke(new MethodInvoker(delegate
+                        {
+                            forminst.SearchCollection.Visible = true;
+                        }));
                     }
                 });
             }
@@ -137,7 +180,15 @@ namespace MusicTime
             controlBar.Refresh();
             MusicTime_Title.Location = new Point(( Width / 2 ) - ( MusicTime_Title.Width / 2 ), ( ( Height - 80 ) / 2 ) - ( MusicTime_Title.Height / 2 ));
             LoadingAnimation.Location = new Point(MusicTime_Title.Location.X + ( MusicTime_Title.Width / 3 ), MusicTime_Title.Location.Y + 45);
-            SearchBox.Location = new Point(( Width / 2 ) - ( SearchBox.Width / 2 ), 7);
+            SearchBox.Location = new Point(( (Width) / 2 ) - ( SearchBox.Width / 2 ), 7);
+            SearchCollection.Location = new Point(( Width / 2 ) - ( SearchCollection.Width / 2 ), SearchCollection.Location.Y);
+            panel1.Visible = SearchCollection.Location.X > panel1.Width;
+            //Console.WriteLine(Width);
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
