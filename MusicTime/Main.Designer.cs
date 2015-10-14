@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.MusicTime_Title = new System.Windows.Forms.Label();
-            this.LoadingAnimation = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LoadingAnimation = new System.Windows.Forms.PictureBox();
             this.SearchBox = new MusicTime.Components.TextEntry();
             this.controlBar = new MusicTime.Components.ControlBar();
             this.SearchCollection = new MusicTime.Components.SongListPanel();
@@ -50,6 +50,16 @@
             this.MusicTime_Title.Text = "MusicTime";
             this.MusicTime_Title.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(11)))), ((int)(((byte)(23)))));
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(61, 660);
+            this.panel1.TabIndex = 5;
+            // 
             // LoadingAnimation
             // 
             this.LoadingAnimation.Image = ((System.Drawing.Image)(resources.GetObject("LoadingAnimation.Image")));
@@ -61,24 +71,14 @@
             this.LoadingAnimation.TabStop = false;
             this.LoadingAnimation.Visible = false;
             // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel1.BackColor = System.Drawing.Color.Gray;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(307, 643);
-            this.panel1.TabIndex = 5;
-            // 
             // SearchBox
             // 
             this.SearchBox.BackColor = System.Drawing.Color.Transparent;
-            this.SearchBox.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(235)))), ((int)(((byte)(233)))));
+            this.SearchBox.BackGroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(42)))), ((int)(((byte)(88)))));
             this.SearchBox.DefaultText = "Search Music";
-            this.SearchBox.DefaultTextColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.SearchBox.DefaultTextColor = System.Drawing.Color.White;
             this.SearchBox.Font = new System.Drawing.Font("Open Sans", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchBox.ForeColor = System.Drawing.Color.Gray;
+            this.SearchBox.ForeColor = System.Drawing.Color.White;
             this.SearchBox.Image = ((System.Drawing.Image)(resources.GetObject("SearchBox.Image")));
             this.SearchBox.Location = new System.Drawing.Point(311, 7);
             this.SearchBox.MaxLength = 32767;
@@ -86,7 +86,7 @@
             this.SearchBox.Name = "SearchBox";
             this.SearchBox.Opacity = 1F;
             this.SearchBox.ReadOnly = false;
-            this.SearchBox.Size = new System.Drawing.Size(515, 45);
+            this.SearchBox.Size = new System.Drawing.Size(490, 45);
             this.SearchBox.TabIndex = 3;
             this.SearchBox.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.SearchBox.UseSystemPasswordChar = false;
@@ -102,25 +102,27 @@
             // 
             // SearchCollection
             // 
-            this.SearchCollection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.SearchCollection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchCollection.AutoScroll = true;
-            this.SearchCollection.Location = new System.Drawing.Point(326, 58);
+            this.SearchCollection.Location = new System.Drawing.Point(70, 58);
             this.SearchCollection.Name = "SearchCollection";
-            this.SearchCollection.Size = new System.Drawing.Size(698, 579);
+            this.SearchCollection.Size = new System.Drawing.Size(1102, 579);
             this.SearchCollection.TabIndex = 4;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(6)))), ((int)(((byte)(17)))), ((int)(((byte)(47)))));
             this.ClientSize = new System.Drawing.Size(1184, 701);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.LoadingAnimation);
             this.Controls.Add(this.MusicTime_Title);
             this.Controls.Add(this.controlBar);
             this.Controls.Add(this.SearchCollection);
+            this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(740, 700);

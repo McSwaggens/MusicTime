@@ -131,7 +131,7 @@ namespace MusicTime
                                 forminst.SearchCollection.Set(build);
                             }));
                         }
-                        Console.WriteLine("Returned for: " + g);
+                        Console.WriteLine("Returned for: \"" + g + "\"");
                     } catch (Exception ee)
                     {
                         Console.WriteLine("Error fetching content: " + ee.Message);
@@ -181,8 +181,7 @@ namespace MusicTime
             MusicTime_Title.Location = new Point(( Width / 2 ) - ( MusicTime_Title.Width / 2 ), ( ( Height - 80 ) / 2 ) - ( MusicTime_Title.Height / 2 ));
             LoadingAnimation.Location = new Point(MusicTime_Title.Location.X + ( MusicTime_Title.Width / 3 ), MusicTime_Title.Location.Y + 45);
             SearchBox.Location = new Point(( (Width) / 2 ) - ( SearchBox.Width / 2 ), 7);
-            SearchCollection.Location = new Point(( Width / 2 ) - ( SearchCollection.Width / 2 ), SearchCollection.Location.Y);
-            panel1.Visible = SearchCollection.Location.X > panel1.Width;
+            //panel1.Visible = SearchCollection.Location.X > panel1.Width;
             //Console.WriteLine(Width);
         }
 

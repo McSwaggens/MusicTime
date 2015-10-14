@@ -94,7 +94,8 @@ namespace MusicTime.Components
     {
         public Image image_Normal;
         public Image image_Hovered;
-        private bool isHovered = false;
+        public bool isHovered = false;
+        public bool invisOnLeave = false;
         public Controller(Image i, Image hi)
         {
             image_Normal = i;

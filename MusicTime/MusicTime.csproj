@@ -153,24 +153,18 @@
     <None Include="Resources\curvearrow32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Search.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\play_hovered.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\pause_hovered.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="MusicTime_Icon.ico" />
+    <None Include="Resources\Search.png" />
+    <None Include="Resources\play_hovered.png" />
     <None Include="Resources\rewind_hovered.png" />
+    <None Include="Resources\pause_hovered.png" />
+    <None Include="Resources\fastforward_hovered.png" />
+    <None Include="Resources\eplay_hovered.png" />
     <None Include="Resources\rewind.png" />
     <None Include="Resources\eplay.png" />
     <None Include="Resources\heart_enabled.png" />
     <None Include="Resources\heart_disabled.png" />
-    <None Include="Resources\fastforward_hovered.png" />
     <None Include="Resources\fastforward.png" />
-    <None Include="Resources\eplay_hovered.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
